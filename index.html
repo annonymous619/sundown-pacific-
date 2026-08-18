@@ -64,7 +64,7 @@
           <div class="section-kicker">Shop the look</div>
           <h2>Built for your vibe.</h2>
         </div>
-        <p>Five standout concepts selected for the first Sundown Pacific drop. Sizes S–XL are $27; XXL and 3XL are $30. Secure checkout is coming next.</p>
+        <p>Five standout concepts selected for the first Sundown Pacific drop. Sizes S–XL are $27; XXL and 3XL are $30. Live discounted shipping is calculated at checkout.</p>
       </div>
 
       <div class="product-grid">
@@ -76,7 +76,7 @@
             <p>Golden-hour car culture with an after-dark West Coast finish.</p>
             <div class="product-pricing" aria-label="Pricing"><span><strong>$27</strong> S–XL</span><span><strong>$30</strong> XXL–3XL</span></div>
             <div class="size-row" aria-label="Available sizes"><b>Sizes</b><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span><span>3XL</span></div>
-            <button class="product-button" type="button" disabled>Checkout coming soon</button>
+            <button class="product-button" type="button" data-product-id="sunset-boulevard" disabled>Secure checkout setup in progress</button>
           </div>
         </article>
         <article class="product-card drop-card">
@@ -87,7 +87,7 @@
             <p>A clean lowrider statement built around quiet confidence.</p>
             <div class="product-pricing" aria-label="Pricing"><span><strong>$27</strong> S–XL</span><span><strong>$30</strong> XXL–3XL</span></div>
             <div class="size-row" aria-label="Available sizes"><b>Sizes</b><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span><span>3XL</span></div>
-            <button class="product-button" type="button" disabled>Checkout coming soon</button>
+            <button class="product-button" type="button" data-product-id="stay-low" disabled>Secure checkout setup in progress</button>
           </div>
         </article>
         <article class="product-card drop-card">
@@ -98,7 +98,7 @@
             <p>Vintage state pride with a bold bear graphic and timeless type.</p>
             <div class="product-pricing" aria-label="Pricing"><span><strong>$27</strong> S–XL</span><span><strong>$30</strong> XXL–3XL</span></div>
             <div class="size-row" aria-label="Available sizes"><b>Sizes</b><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span><span>3XL</span></div>
-            <button class="product-button" type="button" disabled>Checkout coming soon</button>
+            <button class="product-button" type="button" data-product-id="born-in-california" disabled>Secure checkout setup in progress</button>
           </div>
         </article>
         <article class="product-card drop-card">
@@ -109,7 +109,7 @@
             <p>Easygoing coastal scenery for a warm, understated everyday piece.</p>
             <div class="product-pricing" aria-label="Pricing"><span><strong>$27</strong> S–XL</span><span><strong>$30</strong> XXL–3XL</span></div>
             <div class="size-row" aria-label="Available sizes"><b>Sizes</b><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span><span>3XL</span></div>
-            <button class="product-button" type="button" disabled>Checkout coming soon</button>
+            <button class="product-button" type="button" data-product-id="keep-it-coastal" disabled>Secure checkout setup in progress</button>
           </div>
         </article>
         <article class="product-card drop-card">
@@ -120,7 +120,7 @@
             <p>Sunset palms and classic car culture on a heavyweight vintage-inspired tee.</p>
             <div class="product-pricing" aria-label="Pricing"><span><strong>$27</strong> S–XL</span><span><strong>$30</strong> XXL–3XL</span></div>
             <div class="size-row" aria-label="Available sizes"><b>Sizes</b><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span><span>3XL</span></div>
-            <button class="product-button" type="button" disabled>Checkout coming soon</button>
+            <button class="product-button" type="button" data-product-id="west-coast-raised" disabled>Secure checkout setup in progress</button>
           </div>
         </article>
       </div>
@@ -183,6 +183,59 @@
     <p>© 2026 Sundown Pacific. All rights reserved.</p>
   </footer>
 
+  <div class="checkout-modal" id="checkout-modal" hidden>
+    <div class="checkout-backdrop" data-checkout-close></div>
+    <section class="checkout-dialog" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+      <button class="checkout-close" type="button" aria-label="Close checkout" data-checkout-close>×</button>
+      <div class="section-kicker">Secure order</div>
+      <h2 id="checkout-title">Choose your shirt</h2>
+      <p class="checkout-intro">Enter your delivery address to see discounted USPS and UPS rates before paying.</p>
+
+      <form id="shipping-form">
+        <div class="checkout-order-row">
+          <label>Size
+            <select name="size" required>
+              <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option><option>3XL</option>
+            </select>
+          </label>
+          <label>Quantity
+            <select name="quantity" required>
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+            </select>
+          </label>
+          <div class="checkout-price"><span>Shirts</span><strong id="checkout-subtotal">$27.00</strong></div>
+        </div>
+
+        <div class="checkout-fields">
+          <label class="field-wide">Full name<input name="name" autocomplete="name" maxlength="80" required></label>
+          <label class="field-wide">Email<input name="email" type="email" autocomplete="email" maxlength="120" required></label>
+          <label class="field-wide">Street address<input name="street1" autocomplete="shipping address-line1" maxlength="100" required></label>
+          <label class="field-wide">Apartment, suite, etc. <span>(optional)</span><input name="street2" autocomplete="shipping address-line2" maxlength="100"></label>
+          <label>City<input name="city" autocomplete="shipping address-level2" maxlength="60" required></label>
+          <label>State<input name="state" autocomplete="shipping address-level1" maxlength="2" pattern="[A-Za-z]{2}" placeholder="CA" required></label>
+          <label>ZIP code<input name="zip" autocomplete="shipping postal-code" inputmode="numeric" maxlength="10" pattern="[0-9]{5}(-[0-9]{4})?" required></label>
+        </div>
+
+        <div id="turnstile-container" class="turnstile-container"></div>
+        <button class="btn btn-gold checkout-action" type="submit">Show shipping prices</button>
+      </form>
+
+      <form id="rates-form" hidden>
+        <fieldset>
+          <legend>Select shipping</legend>
+          <div id="shipping-rates" class="shipping-rates"></div>
+        </fieldset>
+        <div class="checkout-total"><span>Total</span><strong id="checkout-total">$0.00</strong></div>
+        <button class="btn btn-gold checkout-action" type="submit">Continue to secure payment</button>
+        <button class="checkout-back-link" type="button" id="edit-address">Edit address</button>
+      </form>
+
+      <p class="checkout-status" id="checkout-status" role="status" aria-live="polite"></p>
+      <p class="checkout-privacy">Payments are handled by Stripe. Shipping details are used only to calculate postage and create your label.</p>
+    </section>
+  </div>
+
+  <script src="checkout-config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
