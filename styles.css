@@ -60,9 +60,12 @@ img{max-width:100%;display:block}
 .product-info .product-meta span{color:var(--gold);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
 .product-info h3{font-family:"Bebas Neue";font-size:32px;margin:7px 0 4px}
 .product-info p{color:#9f9a91;margin:0;font-size:14px}
-.size-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:20px}
-.size-row b{margin-right:3px;color:#cbc5ba;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
-.size-row span{min-width:31px;padding:6px 5px;border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;letter-spacing:0;text-align:center}
+.product-pricing{display:flex;gap:8px;margin-top:18px}
+.product-pricing span{display:flex;flex:1;align-items:baseline;justify-content:center;gap:6px;padding:9px 6px;border:1px solid rgba(216,168,74,.28);color:#b7b0a5;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.product-pricing strong{color:var(--gold);font-size:16px;letter-spacing:0}
+.size-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:12px}
+.size-row b{margin-right:1px;color:#cbc5ba;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.size-row span{min-width:28px;padding:6px 4px;border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;letter-spacing:0;text-align:center}
 .product-button{width:100%;min-height:44px;margin-top:18px;border:1px solid rgba(216,168,74,.45);background:transparent;color:#9f978a;font:700 10px "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;cursor:not-allowed}
 .gallery-section{background:#0b0b0b}
 .gallery-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:260px 260px;gap:12px}
