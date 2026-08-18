@@ -200,6 +200,7 @@ async function createCheckout(request, env, fetchImpl, now) {
   form.set('cancel_url', `${siteUrl}/?checkout=cancelled#apparel`);
   form.set('customer_email', quote.email);
   form.set('client_reference_id', quote.shipmentId);
+  form.set('integration_identifier', 'sundown_pacific_checkout_kqmrwzpt');
   form.set('allow_promotion_codes', 'true');
   form.set('line_items[0][price_data][currency]', 'usd');
   form.set('line_items[0][price_data][unit_amount]', String(productPriceCents(quote.size)));
@@ -287,7 +288,8 @@ async function stripeRequest(path, options, env, fetchImpl) {
     method: options.method,
     headers: {
       Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`,
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Stripe-Version': '2026-06-24.dahlia'
     },
     body: options.body
   });

@@ -134,12 +134,14 @@ test('checkout endpoint revalidates the carrier rate and creates a Stripe sessio
     exp: 2_000_000
   }, env.CHECKOUT_SIGNING_SECRET);
   let stripeBody;
+  let stripeHeaders;
   const fetchImpl = async (url, options) => {
     if (url.includes('/shipments/shp_quote')) {
       return Response.json({ rates: [{ id: 'rate_ground', rate: '5.21' }] });
     }
     if (url.includes('api.stripe.com')) {
       stripeBody = options.body;
+      stripeHeaders = options.headers;
       return Response.json({ url: 'https://checkout.stripe.com/c/pay/test' });
     }
     throw new Error(`Unexpected URL ${url}`);
@@ -154,7 +156,9 @@ test('checkout endpoint revalidates the carrier rate and creates a Stripe sessio
   assert.equal(result.checkoutUrl, 'https://checkout.stripe.com/c/pay/test');
   assert.equal(stripeBody.get('line_items[0][price_data][unit_amount]'), '3000');
   assert.equal(stripeBody.get('shipping_options[0][shipping_rate_data][fixed_amount][amount]'), '521');
+  assert.equal(stripeBody.get('integration_identifier'), 'sundown_pacific_checkout_kqmrwzpt');
   assert.equal(stripeBody.get('allow_promotion_codes'), 'true');
+  assert.equal(stripeHeaders['Stripe-Version'], '2026-06-24.dahlia');
 });
 
 test('Stripe webhook signature uses a five-minute tolerance', async () => {
