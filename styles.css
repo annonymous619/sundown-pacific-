@@ -47,13 +47,23 @@ img{max-width:100%;display:block}
 .section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}
 .section-heading h2{font-size:clamp(52px,7vw,95px);margin:8px 0 0}
 .section-heading>p{max-width:460px;color:#a9a39a}
-.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.product-card{background:#181818;border:1px solid var(--line);overflow:hidden}
-.product-image{aspect-ratio:4/5;background-size:cover;background-position:center;filter:saturate(.8) contrast(1.05)}
-.card-tee .product-image{background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.26)),url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80')}
-.card-hoodie .product-image{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.3)),url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=80')}
-.card-hat .product-image{background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.26)),url('https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1200&q=80')}
-.product-info{padding:20px}.product-info span{color:var(--gold);font-size:11px;letter-spacing:.18em}.product-info h3{font-family:"Bebas Neue";font-size:32px;margin:4px 0}.product-info p{color:#9f9a91;margin:0;font-size:14px}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.product-card{display:flex;flex-direction:column;background:#181818;border:1px solid var(--line);overflow:hidden}
+.product-image{aspect-ratio:1/1.05;background-repeat:no-repeat;filter:saturate(.9) contrast(1.04)}
+.product-art{background-image:url('assets/west-coast-culture-collection.png');background-size:300% auto}
+.art-sunset{background-position:0 7%}
+.art-stay-low{background-position:50% 7%}
+.art-born-california{background-position:0 92%}
+.art-keep-coastal{background-position:100% 92%}
+.product-info{display:flex;flex:1;flex-direction:column;padding:20px}
+.product-meta{display:flex;justify-content:space-between;gap:12px}
+.product-info .product-meta span{color:var(--gold);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.product-info h3{font-family:"Bebas Neue";font-size:32px;margin:7px 0 4px}
+.product-info p{color:#9f9a91;margin:0;font-size:14px}
+.size-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:20px}
+.size-row b{margin-right:3px;color:#cbc5ba;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.size-row span{min-width:31px;padding:6px 5px;border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;letter-spacing:0;text-align:center}
+.product-button{width:100%;min-height:44px;margin-top:18px;border:1px solid rgba(216,168,74,.45);background:transparent;color:#9f978a;font:700 10px "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;cursor:not-allowed}
 .gallery-section{background:#0b0b0b}
 .gallery-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:260px 260px;gap:12px}
 .gallery-grid figure{margin:0;position:relative;background-size:cover;background-position:center;overflow:hidden}
@@ -69,8 +79,8 @@ img{max-width:100%;display:block}
 @media(max-width:900px){
   .site-nav{position:absolute;top:100%;left:0;right:0;background:#0b0b0b;border-bottom:1px solid var(--line);padding:20px 5vw;display:none;flex-direction:column;align-items:flex-start}.site-nav.open{display:flex}.menu-toggle{display:block}
   .hero{min-height:72vh;padding-bottom:70px}.hero-stamp{display:none}
-  .intro-grid,.custom-panel,.contact-card{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr 1fr}.product-card:last-child{grid-column:1/3}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 220px 220px}.g1{grid-row:1/3}.g5{grid-column:1/3}.section-heading{align-items:flex-start;flex-direction:column}.site-footer{grid-template-columns:1fr;text-align:left}.site-footer p:nth-child(2),.site-footer p:last-child{text-align:left}
+  .intro-grid,.custom-panel,.contact-card{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr 1fr}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 220px 220px}.g1{grid-row:1/3}.g5{grid-column:1/3}.section-heading{align-items:flex-start;flex-direction:column}.site-footer{grid-template-columns:1fr;text-align:left}.site-footer p:nth-child(2),.site-footer p:last-child{text-align:left}
 }
 @media(max-width:600px){
-  .section{padding:72px 5vw}.hero h1{font-size:82px}.hero-copy{font-size:17px}.product-grid{grid-template-columns:1fr}.product-card:last-child{grid-column:auto}.gallery-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,240px)}.g1,.g5{grid-row:auto;grid-column:auto}.steps{grid-template-columns:1fr}.contact-card{padding:36px 0}.brand small{display:none}
+  .section{padding:72px 5vw}.hero h1{font-size:82px}.hero-copy{font-size:17px}.product-grid{grid-template-columns:1fr}.gallery-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,240px)}.g1,.g5{grid-row:auto;grid-column:auto}.steps{grid-template-columns:1fr}.contact-card{padding:36px 0}.brand small{display:none}
 }
