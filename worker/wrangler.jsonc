@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sundown-pacific-checkout",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-08-17",
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1
+  },
+  "ratelimits": [
+    {
+      "name": "QUOTE_RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": {
+        "limit": 10,
+        "period": 60
+      }
+    },
+    {
+      "name": "CHECKOUT_RATE_LIMITER",
+      "namespace_id": "1002",
+      "simple": {
+        "limit": 6,
+        "period": 60
+      }
+    }
+  ],
+  "vars": {
+    "PUBLIC_SITE_URL": "https://sundownpacific.com",
+    "ALLOWED_ORIGINS": "https://sundownpacific.com,https://www.sundownpacific.com"
+  }
+}
