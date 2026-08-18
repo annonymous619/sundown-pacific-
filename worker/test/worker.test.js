@@ -235,3 +235,33 @@ test('untrusted origins cannot spend shipping-rate API calls', async () => {
   }), env);
   assert.equal(response.status, 403);
 });
+
+test('rate limits stop abusive quote requests before paid APIs are called', async () => {
+  let externalCalls = 0;
+  const protectedEnv = {
+    ...env,
+    QUOTE_RATE_LIMITER: {
+      limit: async ({ key }) => {
+        assert.equal(key, '203.0.113.25');
+        return { success: false };
+      }
+    }
+  };
+  const app = createApp({
+    fetchImpl: async () => {
+      externalCalls += 1;
+      throw new Error('External APIs must not be called after rate limiting.');
+    }
+  });
+  const response = await app.fetch(new Request('https://worker.example/api/quote', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Origin: 'https://sundownpacific.com',
+      'CF-Connecting-IP': '203.0.113.25'
+    },
+    body: JSON.stringify({ ...validOrder, turnstileToken: 'verified-token' })
+  }), protectedEnv);
+  assert.equal(response.status, 429);
+  assert.equal(externalCalls, 0);
+});

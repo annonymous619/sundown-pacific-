@@ -101,11 +101,13 @@ export function createApp({ fetchImpl = fetch, now = () => Date.now() } = {}) {
         if (url.pathname === '/api/quote' && request.method === 'POST') {
           assertAllowedOrigin(request, env);
           assertConfigured(env);
+          await assertRateLimit(request, env.QUOTE_RATE_LIMITER);
           return corsResponse(request, env, await createQuote(request, env, fetchImpl, now));
         }
         if (url.pathname === '/api/checkout' && request.method === 'POST') {
           assertAllowedOrigin(request, env);
           assertConfigured(env);
+          await assertRateLimit(request, env.CHECKOUT_RATE_LIMITER);
           return corsResponse(request, env, await createCheckout(request, env, fetchImpl, now));
         }
         if (url.pathname === '/api/stripe-webhook' && request.method === 'POST') {
@@ -351,6 +353,14 @@ function assertAllowedOrigin(request, env) {
 
 function assertConfigured(env) {
   if (!REQUIRED_SECRETS.every(name => Boolean(env[name]))) throw new CheckoutError('Checkout setup is not complete.', 503);
+}
+
+async function assertRateLimit(request, limiter) {
+  if (!limiter?.limit) return;
+  const forwarded = request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For')?.split(',')[0]?.trim();
+  const key = forwarded || 'unknown-client';
+  const result = await limiter.limit({ key });
+  if (!result.success) throw new CheckoutError('Too many checkout attempts. Please wait a minute and try again.', 429);
 }
 
 function corsResponse(request, env, response) {
