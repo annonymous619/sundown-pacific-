@@ -28,7 +28,8 @@ const PRODUCTS = Object.freeze({
   'stay-low': { name: 'Stay Low' },
   'born-in-california': { name: 'Born in California' },
   'keep-it-coastal': { name: 'Keep It Coastal' },
-  'west-coast-raised': { name: 'West Coast Raised' }
+  'west-coast-raised': { name: 'West Coast Raised' },
+  'socal-after-dark': { name: 'SoCal After Dark' }
 });
 
 const checkoutConfig = window.SUNDOWN_CHECKOUT || { enabled: false, apiBaseUrl: '' };
