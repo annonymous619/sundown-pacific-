@@ -47,7 +47,7 @@ img{max-width:100%;display:block}
 .section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}
 .section-heading h2{font-size:clamp(52px,7vw,95px);margin:8px 0 0}
 .section-heading>p{max-width:460px;color:#a9a39a}
-.product-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .product-card{display:flex;flex-direction:column;background:#181818;border:1px solid var(--line);overflow:hidden}
 .product-image{aspect-ratio:1/1.05;background-repeat:no-repeat;filter:saturate(.9) contrast(1.04)}
 .product-art{background-image:url('assets/west-coast-culture-collection.png');background-size:300% auto}
