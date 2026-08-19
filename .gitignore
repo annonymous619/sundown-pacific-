@@ -1,2 +1,4 @@
 .wrangler/
 worker/node_modules/
+# Private high-resolution production artwork. Never publish DTF masters.
+production-art/
